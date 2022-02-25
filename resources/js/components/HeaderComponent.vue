@@ -5,7 +5,9 @@
         <span class="navbar-brand mb-0 h1">Vue Laravel SPA</span>
           <div>
             <button class="btn btn-success">List</button>
-            <button class="btn btn-success">ADD</button>
+            <router-link v-bind:to="{name: 'task.list'}">
+              <button class="btn btn-success">ADD</button>
+            </router-link>
           </div>
       </nav>
     </div>
