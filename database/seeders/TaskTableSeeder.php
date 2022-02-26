@@ -3,16 +3,17 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\models\Task;
 
-class DatabaseSeeder extends Seeder
+class TaskTableSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        $this->call(TaskTableSeeder::class);
+        Task::factory()->count(50)->create();
     }
 }
