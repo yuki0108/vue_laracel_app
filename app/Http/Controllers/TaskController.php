@@ -12,4 +12,12 @@ class TaskController extends Controller
 
         return $tasks;
     }
+
+    public function show(Task $task) {
+        $task = [
+            'task' => $task
+        ];
+
+        return $task;
+    }
 }
