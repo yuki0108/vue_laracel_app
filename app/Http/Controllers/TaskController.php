@@ -31,13 +31,9 @@ class TaskController extends Controller
         return $task;
     }
 
-    public function update(Request $request, Task $task) {
-        ger($request);
-        $task->update([
-            'title' => $request->title,
-            'content' => $request->content,
-            'person_in_charge' => $request->person_in_charge
-        ]);
+    public function update(Request $request, Task $task)
+    {
+        $task->update($request->all());
 
         return $task;
     }
