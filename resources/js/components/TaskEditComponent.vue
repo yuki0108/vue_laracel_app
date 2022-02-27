@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-sm-6">
-                <form>
+                <form v-on:submit.prevent="submit">
                     <div class="form-group row">
                         <label for="id" class="col-sm-3 col-form-label"
                             >ID</label
@@ -12,7 +12,7 @@
                             class="col-sm-9 form-control-plaintext"
                             readonly
                             id="id"
-                            v-bind:value="taskId"
+                            v-model="task.id"
                         />
                     </div>
                     <div class="form-group row">
@@ -23,7 +23,9 @@
                             type="text"
                             class="col-sm-9 form-control"
                             id="title"
+                            v-model="task.title"
                         />
+                        {{ task.title }}
                     </div>
                     <div class="form-group row">
                         <label for="content" class="col-sm-3 col-form-label"
@@ -33,6 +35,7 @@
                             type="text"
                             class="col-sm-9 form-control"
                             id="content"
+                            v-model="task.content"
                         />
                     </div>
                     <div class="form-group row">
@@ -45,6 +48,7 @@
                             type="text"
                             class="col-sm-9 form-control"
                             id="person-in-charge"
+                            v-model="task.person_in_charge"
                         />
                     </div>
                     <button type="submit" class="btn btn-primary">
@@ -57,9 +61,31 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
     props: {
         taskId: String,
+    },
+    data: function () {
+        return {
+            task: {},
+        };
+    },
+    methods: {
+        getTask() {
+            axios.get("/api/tasks/" + this.taskId).then((res) => {
+                this.task = res.data;
+            });
+        },
+        submit() {
+            axios.put("/api/task/" + this.taskId, this.task).then((res) => {
+                this.$router.push({ name: "task.list" });
+            });
+        },
+    },
+    mounted() {
+        this.getTask();
     },
 };
 </script>
