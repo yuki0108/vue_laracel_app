@@ -30,4 +30,15 @@ class TaskController extends Controller
 
         return $task;
     }
+
+    public function update(Request $request, Task $task) {
+        logger($request);
+        $task->update([
+            'title' => $request->title,
+            'content' => $request->content,
+            'person_in_charge' => $request->person_in_charge
+        ]);
+
+        return $task;
+    }
 }
