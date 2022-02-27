@@ -14,9 +14,9 @@ class TaskController extends Controller
     }
 
     public function show(Task $task) {
-        $task = [
-            'task' => $task
-        ];
+        // $task = [
+        //     'task' => $task
+        // ];
 
         return $task;
     }
@@ -32,7 +32,7 @@ class TaskController extends Controller
     }
 
     public function update(Request $request, Task $task) {
-        logger($request);
+        ger($request);
         $task->update([
             'title' => $request->title,
             'content' => $request->content,

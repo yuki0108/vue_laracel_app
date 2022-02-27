@@ -50,6 +50,7 @@ const router = new VueRouter({
             path: "/tasks/:taskId",
             name: "task.show",
             component: TaskShowComponent,
+            props: true,
         },
         {
             path: "/tasks/create",
