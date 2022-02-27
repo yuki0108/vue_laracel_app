@@ -24,7 +24,7 @@
                             class="col-sm-9 form-control-plaintext"
                             readonly
                             id="title"
-                            value="title title"
+                            v-bind:value="task.title"
                         />
                     </div>
                     <div class="form-group row border-bottom">
@@ -36,7 +36,7 @@
                             class="col-sm-9 form-control-plaintext"
                             readonly
                             id="content"
-                            value="content content"
+                            v-bind:value="task.content"
                         />
                     </div>
                     <div class="form-group row border-bottom">
@@ -50,7 +50,7 @@
                             class="col-sm-9 form-control-plaintext"
                             readonly
                             id="person-in-charge"
-                            value="Ichiro"
+                            v-bind:value="task.person_in_charge"
                         />
                     </div>
                 </form>
@@ -59,9 +59,26 @@
     </div>
 </template>
 <script>
+import axios from "axios";
+
 export default {
     props: {
-        taskId: String,
+        taskId: Number,
+    },
+    data: function () {
+        return {
+            task: {},
+        };
+    },
+    methods: {
+        getTask() {
+            axios.get("/api/tasks/" + this.taskId).then((res) => {
+                this.task = res.data;
+            });
+        },
+    },
+    mounted() {
+        this.getTask();
     },
 };
 </script>
