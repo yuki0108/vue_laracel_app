@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/tasks', [App\Http\Controllers\TaskController::class, 'index'])->name('index');
+Route::post('/task', [App\Http\Controllers\TaskController::class, 'store'])->name('store');
 Route::get('/tasks/{task}', [App\Http\Controllers\TaskController::class, 'show'])->name('show');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
