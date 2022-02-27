@@ -18,6 +18,7 @@ Route::get('/tasks', [App\Http\Controllers\TaskController::class, 'index'])->nam
 Route::post('/task', [App\Http\Controllers\TaskController::class, 'store'])->name('store');
 Route::get('/tasks/{task}', [App\Http\Controllers\TaskController::class, 'show'])->name('show');
 Route::patch('/task/{task}', [App\Http\Controllers\TaskController::class, 'update'])->name('update');
+Route::delete('/task/{task}', [App\Http\Controllers\TaskController::class, 'destroy'])->name('destroy');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
