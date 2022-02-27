@@ -20,4 +20,14 @@ class TaskController extends Controller
 
         return $task;
     }
+
+    public function store(Request $request) {
+        $task = Task::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'person_in_charge' => $request->person_in_charge
+        ]);
+
+        return $task;
+    }
 }
