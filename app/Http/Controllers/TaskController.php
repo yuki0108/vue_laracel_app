@@ -22,6 +22,7 @@ class TaskController extends Controller
     }
 
     public function store(Request $request) {
+        logger($request);
         $task = Task::create([
             'title' => $request->title,
             'content' => $request->content,
