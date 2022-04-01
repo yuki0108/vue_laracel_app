@@ -13,6 +13,7 @@
                 </tr>
             </thead>
             <tbody>
+                {{$task}}aa
                 <tr v-for="(task, index) in tasks" :key="index">
                     <th scope="row">{{ task.id }}</th>
                     <td>{{ task.title }}</td>
@@ -39,6 +40,7 @@
                         </router-link>
                     </td>
                     <td>
+                        <button v-on:click="deleteButton">これはサンプル</button>
                         <button
                             class="btn btn-danger"
                             v-on:click="deleteTask(task.id)"
@@ -72,9 +74,18 @@ export default {
                 this.getTasks();
             });
         },
+        deleteButton() {
+            console.log('これはサンプルです。');
+        }
     },
     mounted() {
         this.getTasks();
     },
+    computed: {
+        count() {
+            return this.$store.state.TaskList.count;
+            console.log(this.$store.state);
+        }
+    }
 };
 </script>
